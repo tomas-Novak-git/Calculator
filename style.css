@@ -22,7 +22,7 @@
     margin-top: 10%;
     border-radius: 4rem;
     width: min-content;
-    max-width: 90%;
+    max-width: 25rem;
     box-shadow: 2rem 2rem 5rem rgba(0,0,0,.2);
   }
     .result-content {
@@ -44,7 +44,6 @@
         font-size: 3rem;
         color: rgb(0, 0, 0);
         height: 3.2rem;
-
         margin: 0;
         padding: 0;
       }
