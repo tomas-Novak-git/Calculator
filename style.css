@@ -81,13 +81,12 @@
         background: #5c6779;
         background: linear-gradient(135deg, #5c6779 0%, #3f4a5b 100%);
       }
-      &.blue {
-        background: linear-gradient(
-        135deg,
-        #1e48a4 0%,
-        #040479 100%
-      );
-      }
+    &.blue {
+      background: linear-gradient(
+      135deg,
+      #1e48a4 0%,
+      #040479 100%
+    );}
       &.double {
         grid-column: 1 / 4;
         width: auto;
@@ -97,5 +96,18 @@
       }
       &.c {
         grid-column: 1 / 1;
+      }
+      &.red {
+        background: linear-gradient(
+        135deg,
+        #830d0d98 0%,
+        #4e2c0a 100%
+      );}
+      &.orange {
+        background: linear-gradient(
+          135deg,
+          #833e0dbf 0%,
+          #4e2c0a 100%
+        );
       }
 }

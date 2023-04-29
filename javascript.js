@@ -34,113 +34,47 @@ let firstNumber = "";
 let secondNumber = "";
 let numberResult = "";
 
-
+// Number buttons
 btnOne.addEventListener('click', () => {
-    const One = "1";
-    if (firstInput == 1 && secondInput == 0) {
-    firstNumber = firstNumber + One;
-    process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-    } else if (firstInput == 0 && secondInput == 1) {
-        secondNumber = secondNumber + One;
-    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-    }
-} 
-);
+    numberAdd(1);
+});
 btnTwo.addEventListener('click', () =>{
-    const Two = "2";
-    if (firstInput == 1 && secondInput == 0) {
-    firstNumber = firstNumber + Two;
-    process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-    } else if (firstInput == 0 && secondInput == 1) {
-        secondNumber = secondNumber + Two;
-        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-    }
+    numberAdd(2);
 });
 btnThree.addEventListener('click', () =>{
-    const Three = "3";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Three;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Three;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(3);
 });
 btnFour.addEventListener('click', () =>{
-    const Four = "4";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Four;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Four;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(4);
 });
 btnFive.addEventListener('click', () =>{
-    const Five = "5";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Five;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Five;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(5);
 });
 btnSix.addEventListener('click', () =>{
-    const Six = "6";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Six;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Six;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(6);
 });
 btnSeven.addEventListener('click', () =>{
-    const Seven = "7";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Seven;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Seven;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(7);
 });
 btnEight.addEventListener('click', () =>{
-    const Eight = "8";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Eight;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Eight;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(8);
 });
 btnNine.addEventListener('click', () =>{
-    const Nine = "9";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Nine;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Nine;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(9);
 });
 btnZero.addEventListener('click', () =>{
-    const Zero = "0";
-    if (firstInput == 1 && secondInput == 0) {
-        firstNumber = firstNumber + Zero;
-        process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-        } else if (firstInput == 0 && secondInput == 1) {
-            secondNumber = secondNumber + Zero;
-            process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
-        }
+    numberAdd(0);
 });
 
 // functions - buttons
 btnAdd.addEventListener('click', () =>{
+    if (firstInput == 0) {
+        selectedFuncChar = "";
+        selectedFunc = 0; 
+    } else if (firstInput == 1) {
     selectedFuncChar = "+";
     selectedFunc = 1;
+    }
     process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
     firstInput = 0;
     secondInput = 1;
@@ -193,4 +127,15 @@ btnEmpty.addEventListener('click', () => {
     numberResult = "";
     process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
     result.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-})
+});
+
+function numberAdd(a) {
+const Number = `${a}`;
+    if (firstInput == 1 && secondInput == 0) {
+    firstNumber = firstNumber + Number;
+    process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
+    } else if (firstInput == 0 && secondInput == 1) {
+        secondNumber = secondNumber + Number;
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
+    }
+}
