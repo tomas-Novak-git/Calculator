@@ -9,6 +9,7 @@ const btnSeven = document.getElementById('btnNumSeven');
 const btnEight = document.getElementById('btnNumEight');
 const btnNine = document.getElementById('btnNumNine');
 const btnZero = document.getElementById('btnNumZero');
+const btnDot = document.getElementById('btnDot');
 
 // Function buttons
 const btnEquals = document.getElementById('btnEquals');
@@ -36,7 +37,7 @@ let numberResult = "";
 
 // Number buttons
 btnOne.addEventListener('click', () => {
-    numberAdd(1);
+    numberAdd(1)
 });
 btnTwo.addEventListener('click', () =>{
     numberAdd(2);
@@ -65,59 +66,43 @@ btnNine.addEventListener('click', () =>{
 btnZero.addEventListener('click', () =>{
     numberAdd(0);
 });
-
-// functions - buttons
+btnDot.addEventListener('click', () => {
+    numberAdd(".");
+})
+// Function buttons
 btnAdd.addEventListener('click', () =>{
-    if (firstInput == 0) {
-        selectedFuncChar = "";
-        selectedFunc = 0; 
-    } else if (firstInput == 1) {
-    selectedFuncChar = "+";
-    selectedFunc = 1;
-    }
-    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
-    firstInput = 0;
-    secondInput = 1;
+    addFunc()
 });
 btnDeduct.addEventListener('click', () =>{
-    selectedFuncChar = "-";
-    selectedFunc = 2;
-    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
-    firstInput = 0;
-    secondInput = 1;
+    deductFunc()
 });
 btnMultiply.addEventListener('click', () =>{
-    selectedFuncChar = "*";
-    selectedFunc = 3;
-    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
-    firstInput = 0;
-    secondInput = 1;
+    multiplyFunc()
 });
 btnDivide.addEventListener('click', () =>{
-    selectedFuncChar = "/";
-    selectedFunc = 4;
-    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
-    firstInput = 0;
-    secondInput = 1;
+    divideFunc()
 });
 btnEquals.addEventListener('click', () => {
-    if (selectedFunc === 1) {
-        let resultFunc = (Number(firstNumber) + Number(secondNumber));
-        result.textContent = `${resultFunc}`
-    } else if (selectedFunc === 2) {
-        let resultFunc = (Number(firstNumber) - Number(secondNumber));
-        result.textContent = `${resultFunc}`
-    } else if (selectedFunc === 3) {
-        let resultFunc = (Number(firstNumber) * Number(secondNumber));
-        result.textContent = `${resultFunc}`
-    } else if (selectedFunc === 4) {
-        let resultFunc = (Number(firstNumber) / Number(secondNumber));
-        result.textContent = `${resultFunc}`
-    }
-    firstInput = 1;
-    secondInput = 0;
+    equalsFunc()
 });
 btnEmpty.addEventListener('click', () => {
+    btnCE()
+});
+btnDelete.addEventListener('click', () => {
+    btnC()
+})
+
+function numberAdd(a) {
+const Number =`${a}`;
+    if (firstInput == 1 && secondInput == 0) {
+    firstNumber = firstNumber + Number;
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    } else if (firstInput == 0 && secondInput == 1) {
+        secondNumber = secondNumber + Number;
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
+    }
+}
+function btnCE() {
     firstInput = 1;
     secondInput = 0;
     selectedFunc = 0;
@@ -127,15 +112,117 @@ btnEmpty.addEventListener('click', () => {
     numberResult = "";
     process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
     result.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-});
-
-function numberAdd(a) {
-const Number = `${a}`;
+};
+function btnC() {
     if (firstInput == 1 && secondInput == 0) {
-    firstNumber = firstNumber + Number;
-    process.textContent = `${firstNumber}${selectedFuncChar} ${secondNumber}`;
-    } else if (firstInput == 0 && secondInput == 1) {
-        secondNumber = secondNumber + Number;
-    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
+        let reducedNum = firstNumber.slice(0, -1);
+        firstNumber = reducedNum;
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    }  else if (firstInput == 0 && secondInput == 1) {
+        let reducedNum = secondNumber.slice(0, -1);
+        secondNumber = reducedNum;
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
     }
+}
+function contEquation(a) {
+    firstNumber = numberResult;
+    secondNumber = "";
+    selectedFunc = a;
+    if (a == 1) {
+        selectedFuncChar = "+";
+    }
+    else if (a == 2) {
+        selectedFuncChar = "-";
+    }
+    else if (a == 3) {
+        selectedFuncChar = "*";
+    }
+    else if (a == 4) {
+        selectedFuncChar = "/";
+    }
+    firstInput = 0;
+    secondInput = 1;
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    result.textContent = "";
+}
+function addFunc() {
+    if (firstInput == 1 && secondInput == 0) {
+        selectedFuncChar = "+";
+        selectedFunc = 1; 
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    } else if (firstInput == 0 && secondInput == 0) {
+        contEquation(1)
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    }
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    firstInput = 0;
+    secondInput = 1;
+}
+function deductFunc() {
+    if (firstInput == 1 && secondInput == 0) {
+        selectedFuncChar = "-";
+        selectedFunc = 2; 
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    } else if (firstInput == 0 && secondInput == 0) {
+        contEquation(2)
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    }
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    firstInput = 0;
+    secondInput = 1;
+}
+function multiplyFunc() {
+    if (firstInput == 1 && secondInput == 0) {
+        selectedFuncChar = "*";
+        selectedFunc = 3; 
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    } else if (firstInput == 0 && secondInput == 0) {
+        contEquation(3)
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    }
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    firstInput = 0;
+    secondInput = 1;
+}
+function divideFunc() {
+    if (firstInput == 1 && secondInput == 0) {
+        selectedFuncChar = "/";
+        selectedFunc = 4; 
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    } else if (firstInput == 0 && secondInput == 0) {
+        contEquation(4)
+        process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+        console.log(firstInput, secondInput);
+    }
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
+    firstInput = 0;
+    secondInput = 1;
+}
+function equalsFunc() {
+    if (selectedFunc == 1) {
+        numberResult = (Number(firstNumber) + Number(secondNumber)).toFixed(3).toString();
+        result.textContent = `${numberResult}`;
+        console.log(numberResult);
+    } else if (selectedFunc == 2) {
+        numberResult = (Number(firstNumber) - Number(secondNumber)).toFixed(3).toString();
+        result.textContent = `${numberResult}`;
+        console.log(numberResult);
+    } else if (selectedFunc == 3) {
+        numberResult = (Number(firstNumber) * Number(secondNumber)).toFixed(3).toString();
+        result.textContent = `${numberResult}`;
+        console.log(numberResult);
+    } else if (selectedFunc == 4) {
+        numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString();
+        result.textContent = `${numberResult}`;
+        console.log(numberResult);
+    }
+    firstInput = 0;
+    secondInput = 0;
 }
