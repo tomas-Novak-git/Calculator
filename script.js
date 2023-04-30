@@ -33,7 +33,7 @@ let selectedFuncChar = "";
 // Variables storing numbers
 let firstNumber = "";
 let secondNumber = "";
-let numberResult = "";
+let numberResult = 0;
 
 // Number buttons
 btnOne.addEventListener('click', () => {
@@ -82,8 +82,13 @@ btnMultiply.addEventListener('click', () =>{
 btnDivide.addEventListener('click', () =>{
     divideFunc()
 });
-btnEquals.addEventListener('click', () => {
+btnEquals.addEventListener('mousedown', () => {
     equalsFunc()
+});
+btnEquals.addEventListener('mouseup', () => {
+    decimalsFunc(numberResult);
+    numberResult.toString();
+    result.textContent = `${numberResult}`;
 });
 btnEmpty.addEventListener('click', () => {
     btnCE()
@@ -207,9 +212,7 @@ function divideFunc() {
 }
 function equalsFunc() {
     if (selectedFunc == 1) {
-        numberResult = (Number(firstNumber) + Number(secondNumber)).toFixed(3).toString();
-        result.textContent = `${numberResult}`;
-        console.log(numberResult);
+        numberResult = (Number(firstNumber) + Number(secondNumber));
     } else if (selectedFunc == 2) {
         numberResult = (Number(firstNumber) - Number(secondNumber)).toFixed(3).toString();
         result.textContent = `${numberResult}`;
@@ -222,7 +225,10 @@ function equalsFunc() {
         numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString();
         result.textContent = `${numberResult}`;
         console.log(numberResult);
-    }
+    } 
     firstInput = 0;
     secondInput = 0;
+}
+function decimalsFunc(numberResult){
+    return (numberResult % 1 !== 0) ? numberResult.toFixed(1) : numberResult;
 }
