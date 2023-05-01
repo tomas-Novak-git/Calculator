@@ -82,12 +82,9 @@ btnMultiply.addEventListener('click', () =>{
 btnDivide.addEventListener('click', () =>{
     divideFunc()
 });
-btnEquals.addEventListener('mousedown', () => {
-    equalsFunc()
-});
-btnEquals.addEventListener('mouseup', () => {
-    decimalsFunc(numberResult);
-    numberResult.toString();
+btnEquals.addEventListener('click', () => {
+    equalsFunc();
+    numberResult.replace(".000", "");
     result.textContent = `${numberResult}`;
 });
 btnEmpty.addEventListener('click', () => {
@@ -212,23 +209,14 @@ function divideFunc() {
 }
 function equalsFunc() {
     if (selectedFunc == 1) {
-        numberResult = (Number(firstNumber) + Number(secondNumber));
+        numberResult = (Number(firstNumber) + Number(secondNumber)).toFixed(3).toString().replace(".000", "");
     } else if (selectedFunc == 2) {
-        numberResult = (Number(firstNumber) - Number(secondNumber)).toFixed(3).toString();
-        result.textContent = `${numberResult}`;
-        console.log(numberResult);
+        numberResult = (Number(firstNumber) - Number(secondNumber)).toFixed(3).toString().replace(".000", "");
     } else if (selectedFunc == 3) {
-        numberResult = (Number(firstNumber) * Number(secondNumber)).toFixed(3).toString();
-        result.textContent = `${numberResult}`;
-        console.log(numberResult);
+        numberResult = (Number(firstNumber) * Number(secondNumber)).toFixed(3).toString().replace(".000", "");
     } else if (selectedFunc == 4) {
-        numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString();
-        result.textContent = `${numberResult}`;
-        console.log(numberResult);
+        numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString().replace(".000", "");
     } 
     firstInput = 0;
     secondInput = 0;
-}
-function decimalsFunc(numberResult){
-    return (numberResult % 1 !== 0) ? numberResult.toFixed(1) : numberResult;
 }
