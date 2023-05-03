@@ -84,7 +84,6 @@ btnDivide.addEventListener('click', () =>{
 });
 btnEquals.addEventListener('click', () => {
     equalsFunc();
-    numberResult.replace(".000", "");
     result.textContent = `${numberResult}`;
 });
 btnEmpty.addEventListener('click', () => {
@@ -93,6 +92,38 @@ btnEmpty.addEventListener('click', () => {
 btnDelete.addEventListener('click', () => {
     btnC()
 })
+// numberButtons - keyboard
+document.addEventListener('keypress', (event) => { 
+    if(event.key == "1") {numberAdd(1);}
+    if(event.key == "2") {numberAdd(2);}
+    if(event.key == "3") {numberAdd(3);}
+    if(event.key == "4") {numberAdd(4);}
+    if(event.key == "5") {numberAdd(5);}
+    if(event.key == "6") {numberAdd(6);}
+    if(event.key == "7") {numberAdd(7);}
+    if(event.key == "8") {numberAdd(8);}
+    if(event.key == "9") {numberAdd(9);}
+    if(event.key == "0") {numberAdd(0);}
+    if(event.key == ".") {numberAdd(".");}
+    if(event.key == "+") {addFunc();}
+    if(event.key == "-") {deductFunc();}
+    if(event.key == "*") {multiplyFunc();}
+    if(event.key == "/") {divideFunc();}
+    if(event.key == "Enter") {equalsFunc();
+        result.textContent = `${numberResult}`}
+    if(event.key == "=") {equalsFunc();
+        result.textContent = `${numberResult}`}
+ })
+//  deleting buttons - keyboard
+ document.addEventListener('keydown', (event) => {
+    if (event.ctrlKey && event.key === 'z') {
+        btnC();
+    }  else if (event.key === 'Backspace') {
+        btnCE();
+    }
+ })
+
+
 
 function numberAdd(a) {
 const Number =`${a}`;
@@ -157,7 +188,16 @@ function addFunc() {
         contEquation(1)
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
-    }
+    }  else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
+        numberResult = (Number(firstNumber) + Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        firstNumber = numberResult;
+        secondNumber = "";
+        selectedFuncChar = "+";
+        selectedFunc = 1; 
+        firstInput = 0;
+        secondInput = 1;
+        process.textContent = `${firstNumber} ${selectedFuncChar}`;
+    } 
     process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
     firstInput = 0;
     secondInput = 1;
@@ -172,7 +212,15 @@ function deductFunc() {
         contEquation(2)
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
-    }
+    }   else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
+        numberResult = (Number(firstNumber) - Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        firstNumber = numberResult;
+        secondNumber = "";
+        selectedFuncChar = "-";
+        selectedFunc = 2; 
+        firstInput = 0;
+        secondInput = 1;
+        process.textContent = `${firstNumber} ${selectedFuncChar}`; }
     process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
     firstInput = 0;
     secondInput = 1;
@@ -187,7 +235,15 @@ function multiplyFunc() {
         contEquation(3)
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
-    }
+    }   else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
+        numberResult = (Number(firstNumber) * Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        firstNumber = numberResult;
+        secondNumber = "";
+        selectedFuncChar = "*";
+        selectedFunc = 3; 
+        firstInput = 0;
+        secondInput = 1;
+        process.textContent = `${firstNumber} ${selectedFuncChar}`; }
     process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
     firstInput = 0;
     secondInput = 1;
@@ -202,7 +258,15 @@ function divideFunc() {
         contEquation(4)
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
-    }
+    }   else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
+        numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        firstNumber = numberResult;
+        secondNumber = "";
+        selectedFuncChar = "/";
+        selectedFunc = 4; 
+        firstInput = 0;
+        secondInput = 1;
+        process.textContent = `${firstNumber} ${selectedFuncChar}`; }
     process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
     firstInput = 0;
     secondInput = 1;
