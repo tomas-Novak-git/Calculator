@@ -85,6 +85,8 @@ btnDivide.addEventListener('click', () =>{
 btnEquals.addEventListener('click', () => {
     equalsFunc();
     result.textContent = `${numberResult}`;
+    firstInput = 0;
+    secondInput = 0;
 });
 btnEmpty.addEventListener('click', () => {
     btnCE()
@@ -189,7 +191,7 @@ function addFunc() {
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
     }  else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
-        numberResult = (Number(firstNumber) + Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        equalsFunc();
         firstNumber = numberResult;
         secondNumber = "";
         selectedFuncChar = "+";
@@ -213,7 +215,7 @@ function deductFunc() {
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
     }   else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
-        numberResult = (Number(firstNumber) - Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        equalsFunc();
         firstNumber = numberResult;
         secondNumber = "";
         selectedFuncChar = "-";
@@ -236,7 +238,7 @@ function multiplyFunc() {
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
     }   else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
-        numberResult = (Number(firstNumber) * Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        equalsFunc();
         firstNumber = numberResult;
         secondNumber = "";
         selectedFuncChar = "*";
@@ -259,7 +261,7 @@ function divideFunc() {
         process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`;
         console.log(firstInput, secondInput);
     }   else if (firstInput == 0 && secondInput == 1 && secondNumber !== 0) {
-        numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString().replace(".000", "");
+        equalsFunc();
         firstNumber = numberResult;
         secondNumber = "";
         selectedFuncChar = "/";
@@ -281,6 +283,4 @@ function equalsFunc() {
     } else if (selectedFunc == 4) {
         numberResult = (Number(firstNumber) / Number(secondNumber)).toFixed(3).toString().replace(".000", "");
     } 
-    firstInput = 0;
-    secondInput = 0;
 }
