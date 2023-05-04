@@ -74,7 +74,15 @@ btnAdd.addEventListener('click', () =>{
     addFunc()
 });
 btnDeduct.addEventListener('click', () =>{
+    if (firstInput === 1 && secondInput === 0 && firstNumber === "") {
+        firstNumber = "-";
+        process.textContent = `${firstNumber}`
+    } else if (firstInput === 0 && secondInput === 1 && secondNumber === ""){
+    secondNumber = "-";
+    process.textContent = `${firstNumber} ${selectedFuncChar} ${secondNumber}`
+    } else {
     deductFunc()
+    }
 });
 btnMultiply.addEventListener('click', () =>{
     multiplyFunc()
